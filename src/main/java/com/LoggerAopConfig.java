@@ -28,6 +28,7 @@ public class LoggerAopConfig {
 	        log.info("调用-----"+ realClassName + " 执行 " + getMethodName(point) + " 方法之前"+"--参数"+JSON.toJSONString(a));
 	    }
 
+	    
 	    @After("executeService()")
 	    public void invokeAfter(JoinPoint point) {
 	        String realClassName = getRealClassName(point);
