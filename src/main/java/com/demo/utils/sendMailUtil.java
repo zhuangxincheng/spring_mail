@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class sendMailUtil {
-	@Value("${spring.mail.host}")
+	@Value("${spring.mail.host:DefaultValue}")
 	private String host;
 	@Value("${spring.mail.protocol}")
 	private String protocol;
