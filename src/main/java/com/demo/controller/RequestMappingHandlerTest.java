@@ -1,12 +1,6 @@
 package com.demo.controller;
 
-import java.beans.PropertyDescriptor;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
+import com.demo.javabean.TestBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -20,7 +14,11 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import com.demo.javabean.TestBean;
+import javax.servlet.http.HttpServletResponse;
+import java.beans.PropertyDescriptor;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
 
 /**
  * 查看项目所有URL对应的Controller和方法
@@ -59,7 +57,6 @@ public class RequestMappingHandlerTest {
 				}
 
 			}
-
 			sb.append(method.getMethod().getName()).append('\n');
 		}
 
