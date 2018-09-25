@@ -101,5 +101,11 @@ public class SendMailController {
 		Task.doTaskOne();
 		Task.doTaskTwo();
 	}
+	
+	@RequestMapping(value = "testTask", method = RequestMethod.PUT)
+	public void testTaskEdit() {
+		Task.doTaskOne();
+		Task.doTaskTwo();
+	}
 
 }

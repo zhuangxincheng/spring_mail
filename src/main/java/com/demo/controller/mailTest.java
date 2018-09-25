@@ -1,22 +1,29 @@
 package com.demo.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 @SuppressWarnings("all")
 public class mailTest {
 	public static void main(String[] args) {
-		Date date = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		long ago = 0L;
-		try {
-			 ago = format.parse("2018-03-21").getTime();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		long a = date.getTime();
-		System.out.println(a>ago);
+		
+		String aa = "sed/gf/drty";
+		String[] a = aa.split("/");
+		
+		Map<String,Object> m = new HashMap<String,Object>();
+		m.put("$ref", a[a.length-1]);
+		
+//		Date date = new Date();
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//		long ago = 0L;
+//		try {
+//			 ago = format.parse("2018-03-21").getTime();
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		long a = date.getTime();
+		System.out.println(m.get("$ref"));
 		
 //		List<String> aa = new ArrayList<String>();
 //		aa.add("123");
