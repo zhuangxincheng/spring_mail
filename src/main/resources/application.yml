@@ -18,6 +18,8 @@ logging.level.com: DEBUG
 #      username: root
 #      password: root
 
+security.basic.enabled : false
+
 server:
   port: 8080
 eureka.client.service-url.defaultZone: http://admin:123456@localhost:8761/eureka/

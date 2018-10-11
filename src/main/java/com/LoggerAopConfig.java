@@ -24,7 +24,11 @@ public class LoggerAopConfig {
 	    @Before("executeService()")
 	    public void invokeBefore(JoinPoint point) {
 	        String realClassName = getRealClassName(point);
-	        Object a = point.getArgs()[0];
+	        Object[] args = point.getArgs();
+	        Object a = null;
+	        if(args.length>0) {
+	        	a = args[0];
+	        }	        
 	        log.info("调用-----"+ realClassName + " 执行 " + getMethodName(point) + " 方法之前"+"--参数"+JSON.toJSONString(a));
 	    }
 
