@@ -24,6 +24,7 @@ import java.util.Map;
  * 查看项目所有URL对应的Controller和方法
  */
 @Controller
+@SuppressWarnings("all")
 public class RequestMappingHandlerTest {
 	private static Logger logger = LoggerFactory.getLogger(RequestMappingHandlerTest.class);
 	@Autowired
