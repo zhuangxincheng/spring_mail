@@ -1,9 +1,7 @@
 package com.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 import javax.sql.DataSource;
 
@@ -25,7 +23,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/springboot/")
+@RequestMapping("")
 @Api(value = "SendMailController", description = "邮件发送模块")
 public class SendMailController {
 	private static Logger logger = LoggerFactory.getLogger(SendMailController.class);
@@ -49,21 +47,21 @@ public class SendMailController {
 		long start = System.currentTimeMillis();
 		int code = 0;
 
-		List<Future<String>> list = new ArrayList<Future<String>>();
-		Future<String> tatsk = null;
-		for (int i = 0; i < email.length; i++) {
-
-			tatsk = sendMailUtil.sendHtml("xincheng.zhuang@wowjoy.cn", "18249512862Zxc", title, html, email[i]);
-
-			list.add(tatsk);
-
-			while (true) {
-				if (tatsk.get().equals("200")) {
-					break;
-				}
-			}
-
-		}
+//		List<Future<String>> list = new ArrayList<Future<String>>();
+//		Future<String> tatsk = null;
+//		for (int i = 0; i < email.length; i++) {
+//
+			sendMailUtil.sendHtml("xincheng.zhuang@wowjoy.cn", "18310763990Zxc", title, html, email[0]);
+//
+//			list.add(tatsk);
+//
+//			while (true) {
+//				if (tatsk.get().equals("200")) {
+//					break;
+//				}
+//			}
+//
+//		}
 
 		// while (true) {
 		// String aaa = list.get(list.size() - 1).get();

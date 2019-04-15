@@ -1,18 +1,22 @@
 package com.demo.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("all")
 public class mailTest {
 	public static void main(String[] args) {
 		
-		String aa = "sed/gf/drty";
-		String[] a = aa.split("/");
+		List a = new ArrayList<>();
+		boolean flag  = a.contains("asd");
 		
-		Map<String,Object> m = new HashMap<String,Object>();
-		m.put("$ref", a[a.length-1]);
+//		String aa = "sed/gf/drty";
+//		String[] a = aa.split("/");
 		
+//		Map<String,Object> m = new HashMap<String,Object>();
+//		m.put("a","123");
+//		m.put("a","456");
+//		System.out.println(JSON.toJSON(m));
 //		Date date = new Date();
 //		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //		long ago = 0L;
@@ -23,7 +27,7 @@ public class mailTest {
 //			e.printStackTrace();
 //		}
 //		long a = date.getTime();
-		System.out.println(m.get("$ref"));
+//		System.out.println(m.get("$ref"));
 		
 //		List<String> aa = new ArrayList<String>();
 //		aa.add("123");

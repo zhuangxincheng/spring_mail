@@ -14,6 +14,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
+
+
 @Component
 public class sendMailUtil {
 	@Value("${spring.mail.host:DefaultValue}")
@@ -77,15 +79,25 @@ public class sendMailUtil {
 
 			// 建立邮件消息,发送简单邮件和html邮件的区别
 			MimeMessage mailMessage = senderImpl.createMimeMessage();
-			MimeMessageHelper messageHelper = new MimeMessageHelper(mailMessage);
+			MimeMessageHelper messageHelper = new MimeMessageHelper(mailMessage,true);
 
 			// 设置收件人，寄件人
 			// String[] a = new String[]{"xincheng.zhuang@wowjoy.c"};
 			messageHelper.setTo(to);
 			messageHelper.setFrom(username);
 			messageHelper.setSubject(title);
+			
+			//附件
+//			File file = new File("E://穆绘旭//100_FUJI/DSCF0347.JPG");
+//			File file1 = new File("E://穆绘旭//100_FUJI/DSCF0345.JPG");
+//			InputStream in =  new FileInputStream(file);
+//			InputStream in1 =  new FileInputStream(file1);
+//			byte[] a = IOUtils.toByteArray(in);
+//			messageHelper.addAttachment("aaa.png",new ByteArrayResource(IOUtils.toByteArray(in)));
+//			messageHelper.addAttachment("bbb.zip",new ByteArrayResource(IOUtils.toByteArray(in1)));
+			
 			// true 表示启动HTML格式的邮件
-			messageHelper.setText(html, true);
+			messageHelper.setText(html,true);
 			senderImpl.setUsername(username); // 根据自己的情况,设置username
 			senderImpl.setPassword(password); // 根据自己的情况, 设置password
 			Properties prop = new Properties();
