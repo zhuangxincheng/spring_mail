@@ -1,10 +1,12 @@
 package com.demo.controller;
 
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
-import javax.sql.DataSource;
-
+import com.demo.javabean.TestBean;
+import com.demo.utils.sendMailUtil;
+import com.mail.mapping.UserMapperExt;
+import com.mail.model.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.javabean.TestBean;
-import com.demo.utils.sendMailUtil;
-import com.mail.mapping.UserMapper;
-import com.mail.model.User;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
+import javax.sql.DataSource;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("")
@@ -32,7 +29,7 @@ public class SendMailController {
 	@Autowired
 	Task Task;
 	@Autowired
-	UserMapper mapper;
+	UserMapperExt mapper;
 	@Autowired
 	ApplicationContext applicationContext;
 
@@ -86,7 +83,7 @@ public class SendMailController {
 	@ApiImplicitParam(name = "userId", value = "用户ID", paramType = "query", required = true, dataType = "String")
 	@RequestMapping(value = "user", method = RequestMethod.GET)
 	public List<User> getUserOnfo(String userId) {
-		List<User> users = mapper.selectByExample(null);
+		List<User> users = mapper.selectByEId(null);
 		DataSource dataSource = applicationContext.getBean(DataSource.class);
 		// 查看配置数据源信息
 		System.out.println(dataSource);
