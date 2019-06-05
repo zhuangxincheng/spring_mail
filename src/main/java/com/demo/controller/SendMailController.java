@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -82,7 +83,7 @@ public class SendMailController {
     @ApiOperation(value = "用户信息获取", notes = "用户信息获取")
     @ApiImplicitParam(name = "userId", value = "用户ID", paramType = "query", required = true, dataType = "String")
     @RequestMapping(value = "user", method = RequestMethod.GET)
-    public List<User> getUserOnfo(String userId) {
+    public List<User> getUserOnfo(User User, HttpServletRequest httpServletRequest) {
         List<User> users = mapper.selectByEId(null);
         DataSource dataSource = applicationContext.getBean(DataSource.class);
         // 查看配置数据源信息
