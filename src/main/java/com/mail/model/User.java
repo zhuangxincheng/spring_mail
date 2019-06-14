@@ -14,6 +14,16 @@ public class User implements Serializable{
     private String username;
     @NotEmpty(groups = AAA.class,message = "password不能为空")
     private String password;
+    @NotEmpty(groups = AAA.class,message = "id不能为空")
+    private int id ;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
