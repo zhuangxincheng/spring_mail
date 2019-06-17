@@ -11,5 +11,6 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
+        System.out.println("sssss");
     }
 }
