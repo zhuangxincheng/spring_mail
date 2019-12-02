@@ -1,12 +1,8 @@
 package com.demo;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import com.alibaba.fastjson.JSON;
+import com.demo.javabean.Hero;
+import com.demo.utils.ExcelUtil;
 import org.apache.commons.collections4.map.HashedMap;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -15,9 +11,19 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
 
-import com.alibaba.fastjson.JSON;
-import com.demo.javabean.Hero;
-import com.demo.utils.ExcelUtil;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.*;
+
 @SuppressWarnings("all")
 public class ImportExcel {
 	@Test
@@ -58,6 +64,51 @@ public class ImportExcel {
 		Map map = new HashedMap<>();
 		map.put("aaa", "111");
 		System.out.print(map);
+	}
+	@Test
+	public void mapToXml() throws Exception {
+		Map<String, String>  map = new HashMap<>();
+		map.put("asd","34344");
+		map.put("qqqq","sdrer");
+		this.mapToXml(map);
+	}
+
+	public String mapToXml(Map<String, String> data) throws Exception {
+		String a =  UUID.randomUUID().toString().replace("-","");
+
+		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder documentBuilder= documentBuilderFactory.newDocumentBuilder();
+		org.w3c.dom.Document document = documentBuilder.newDocument();
+		org.w3c.dom.Element root = document.createElement("xml");
+		document.appendChild(root);
+		for (String key: data.keySet()) {
+			String value = data.get(key);
+			if (value == null) {
+				value = "";
+			}
+			value = value.trim();
+			org.w3c.dom.Element filed = document.createElement(key);
+			filed.appendChild(document.createTextNode("<![CDATA["+value+"]]>"));
+			root.appendChild(filed);
+		}
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		DOMSource source = new DOMSource(document);
+		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		StringWriter writer = new StringWriter();
+		StreamResult result = new StreamResult(writer);
+		transformer.transform(source, result);
+		String output = writer.getBuffer().toString().replaceAll("\n|\r", "");
+		try {
+			writer.close();
+		}
+		catch (Exception ex) {
+		}
+		output = output.replace("&lt;", '<' + "");
+		output = output.replace("&gt;", '>' + "");
+		output =  output.replace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>","");
+		return output;
 	}
 
 }

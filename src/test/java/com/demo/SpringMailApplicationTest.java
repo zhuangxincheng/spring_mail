@@ -1,5 +1,8 @@
 package com.demo;
 
+import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,20 +12,18 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringMailApplicationTest {
 
 	@Test
 	public void contextLoads() {
-		String result = sendGet("http://api.ums86.com:8888/sms/Api/Send.do","SpCode=003096&LoginName=hz_hzxx&Password=893675&MessageContent=你有一项编号为123456789的事务需要处理。&UserNumber=18310763990&SerialNumber=111&ScheduleTime=20090901010101’&f=1");
+String text = "1234name4321name11name";
+String name = "name";
+		System.out.println(text.replace(name,"tom"));
+		//String result = sendGet("http://api.ums86.com:8888/sms/Api/Send.do","SpCode=003096&LoginName=hz_hzxx&Password=893675&MessageContent=你有一项编号为123456789的事务需要处理。&UserNumber=18310763990&SerialNumber=111&ScheduleTime=20090901010101’&f=1");
 		//String result = sendGet("http://api.ums86.com:8888/sms/Api/report.do","SpCode=003096&LoginName=hz_hzxx&Password=893675");
-		System.out.println("-----"+result);
+		//System.out.println("-----"+result);
 	}
 
 	public static String sendGet(String url, String param) {
